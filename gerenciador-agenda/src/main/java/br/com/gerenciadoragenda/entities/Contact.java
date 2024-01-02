@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.gerenciadoragenda.entities.enums.Group;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,13 +27,23 @@ public class Contact implements Serializable{
 	@Column
 	private String name;
 	
+	private Integer group;
+	
 	private List<String> emails;
 	private List<String> phones;
 	
-	public Contact(Long id, String name) {
+	@ManyToOne
+	@JoinColumn(name = "schedule_id")
+	private User schedule;
+	
+	public Contact() {
+	}
+	
+	public Contact(Long id, String name, Group group) {
 		super();
 		this.id = id;
 		this.name = name;
+		setGroup(group);
 	}
 
 	public Long getId() {
@@ -60,6 +73,16 @@ public class Contact implements Serializable{
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+	
+	public Integer getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		if (group != null) {
+			this.group = group.getCode();
+		}
 	}
 
 	@Override
