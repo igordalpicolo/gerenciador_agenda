@@ -1,10 +1,9 @@
 package br.com.gerenciadoragenda.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
-import br.com.gerenciadoragenda.entities.enums.Group;
+import br.com.gerenciadoragenda.entities.enums.Team;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,10 +26,10 @@ public class Contact implements Serializable{
 	@Column
 	private String name;
 	
-	private Integer group;
+	private Integer team;
 	
-	private List<String> emails;
-	private List<String> phones;
+	private String email;
+	private String phone;
 	
 	@ManyToOne
 	@JoinColumn(name = "schedule_id")
@@ -38,13 +37,16 @@ public class Contact implements Serializable{
 	
 	public Contact() {
 	}
-	
-	public Contact(Long id, String name, Group group) {
+
+	public Contact(Long id, String name, String email, String phone, Team team) {
 		super();
 		this.id = id;
 		this.name = name;
-		setGroup(group);
+		this.email = email;
+		this.phone = phone;
+		setTeam(team);
 	}
+
 
 	public Long getId() {
 		return id;
@@ -62,12 +64,20 @@ public class Contact implements Serializable{
 		this.name = name;
 	}
 
-	public List<String> getEmails() {
-		return emails;
+	public String getEmail() {
+		return email;
 	}
 
-	public List<String> getPhones() {
-		return phones;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override
@@ -75,13 +85,13 @@ public class Contact implements Serializable{
 		return Objects.hash(id);
 	}
 	
-	public Integer getGroup() {
-		return group;
+	public Integer getTeam() {
+		return team;
 	}
 
-	public void setGroup(Group group) {
-		if (group != null) {
-			this.group = group.getCode();
+	public void setTeam(Team team) {
+		if (team != null) {
+			this.team = team.getCode();
 		}
 	}
 

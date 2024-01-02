@@ -1,6 +1,6 @@
 package br.com.gerenciadoragenda.entities.enums;
 
-public enum Group {
+public enum Team {
 
 	FAMILY(1), 
 	FRIENDS(2), 
@@ -8,7 +8,7 @@ public enum Group {
 
 	private int code;
 
-	private Group(int code) {
+	private Team(int code) {
 		this.code = code;
 	}
 
@@ -16,8 +16,8 @@ public enum Group {
 		return code;
 	}
 
-	public static Group valueOf(int code) {
-		for (Group value : Group.values()) {
+	public static Team valueOf(int code) {
+		for (Team value : Team.values()) {
 			if (value.getCode() == code) {
 				return value;
 			}
