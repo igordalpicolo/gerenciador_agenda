@@ -20,7 +20,7 @@ import br.com.gerenciadoragenda.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class ContactResource {
 
 	@Autowired
 	private UserService service;
