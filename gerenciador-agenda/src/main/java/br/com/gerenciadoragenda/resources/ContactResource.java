@@ -19,7 +19,7 @@ import br.com.gerenciadoragenda.entities.User;
 import br.com.gerenciadoragenda.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/contacts")
 public class ContactResource {
 
 	@Autowired
