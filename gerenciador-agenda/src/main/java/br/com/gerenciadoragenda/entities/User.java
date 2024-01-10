@@ -72,6 +72,10 @@ public class User implements Serializable{
 		return Objects.hash(id);
 	}
 
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
