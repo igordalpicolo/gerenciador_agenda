@@ -35,6 +35,9 @@ public class User implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "schedule")
 	private List<Contact> contacts = new ArrayList<>();
+	
+	public User() {
+	}
 
 	public User(Long id, String username, int password) {
 		super();
