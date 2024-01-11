@@ -2,8 +2,10 @@ package br.com.gerenciadoragenda.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -75,9 +77,14 @@ public class User implements Serializable{
 		return Objects.hash(id);
 	}
 
-	public List<Contact> getContacts() {
-		return contacts;
+	public Set<Contact> getContacts() {
+		Set<Contact> set = new HashSet<>();
+		for(Contact x : contacts) {
+			set.add(x);
+		}
+		return set;
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
