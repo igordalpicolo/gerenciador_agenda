@@ -34,7 +34,6 @@ public class User implements Serializable{
 	@Column
 	private int password;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "schedule")
 	private List<Contact> contacts = new ArrayList<>();
 	
