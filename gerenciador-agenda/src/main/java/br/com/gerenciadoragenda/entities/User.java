@@ -1,14 +1,11 @@
 package br.com.gerenciadoragenda.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,8 +31,8 @@ public class User implements Serializable{
 	@Column
 	private int password;
 	
-	@OneToMany(mappedBy = "schedule")
-	private List<Contact> contacts = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Contact> contacts = new HashSet<>();
 	
 	public User() {
 	}
@@ -77,11 +74,7 @@ public class User implements Serializable{
 	}
 
 	public Set<Contact> getContacts() {
-		Set<Contact> set = new HashSet<>();
-		for(Contact x : contacts) {
-			set.add(x);
-		}
-		return set;
+		return contacts;
 	}
 	
 

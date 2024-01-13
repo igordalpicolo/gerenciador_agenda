@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -32,8 +31,8 @@ public class Contact implements Serializable{
 	private String phone;
 	
 	@ManyToOne
-	@JoinColumn(name = "schedule_id")
-	private User schedule;
+	//@JoinColumn(name = "user_id")
+	private User user;
 	
 	public Contact() {
 	}
@@ -79,10 +78,14 @@ public class Contact implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	public Integer getTeam() {
@@ -96,6 +99,11 @@ public class Contact implements Serializable{
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -106,5 +114,7 @@ public class Contact implements Serializable{
 		Contact other = (Contact) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
 
 }
