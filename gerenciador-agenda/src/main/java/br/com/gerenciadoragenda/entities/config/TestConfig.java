@@ -31,7 +31,7 @@ public class TestConfig implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		
-		Contact c1 = new Contact(null, "Nataly", "nataly@email.com", "11112222", null);
+		Contact c1 = new Contact(null, "Nataly", "nataly@email.com", "11112222", Team.JOB);
 		Contact c2 = new Contact(null, "Jason", "jason@email.com", "12345678", Team.FAMILY);
 		Contact c3 = new Contact(null, "Maria", "maria@email.com", "13265487", Team.FRIENDS);
 		Contact c4 = new Contact(null, "Amil", "amil@email.com", "78321447", Team.JOB);
