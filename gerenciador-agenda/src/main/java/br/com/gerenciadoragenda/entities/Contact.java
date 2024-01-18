@@ -3,6 +3,8 @@ package br.com.gerenciadoragenda.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.gerenciadoragenda.entities.enums.Team;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +34,7 @@ public class Contact implements Serializable{
 	
 	@ManyToOne
 	//@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 	
 	public Contact() {

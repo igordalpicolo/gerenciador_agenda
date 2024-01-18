@@ -29,10 +29,6 @@ public class ContactService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public Contact insert(Contact obj) {
-		return repository.save(obj);
-	}
-	
 	public void delete(Long id) {
 		try {
 			if(!repository.existsById(id)) throw new ResourceNotFoundException(id);

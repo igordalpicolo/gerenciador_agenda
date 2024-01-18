@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import br.com.gerenciadoragenda.entities.Contact;
 import br.com.gerenciadoragenda.entities.User;
 import br.com.gerenciadoragenda.repositories.UserRepository;
 import br.com.gerenciadoragenda.services.execeptions.DatabaseException;
@@ -30,6 +31,14 @@ public class UserService {
 	
 	public User insert(User obj) {
 		return repository.save(obj);
+	}
+	
+	public Contact addContactToUser(Long id,Contact contact) {
+		User user = findById(id);
+		contact.setUser(user);
+		user.getContacts().add(contact);
+		insert(user);
+		return contact;
 	}
 	
 	public void delete(Long id) {

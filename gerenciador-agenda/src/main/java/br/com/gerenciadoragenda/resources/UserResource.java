@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.gerenciadoragenda.entities.Contact;
 import br.com.gerenciadoragenda.entities.User;
 import br.com.gerenciadoragenda.services.UserService;
 
@@ -37,11 +38,18 @@ public class UserResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PostMapping
+	@PostMapping("/users")
 	public ResponseEntity<User> insert(@RequestBody User obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
+	}
+	
+	@PostMapping("/{id}/contacts")
+	public ResponseEntity<Contact> addContactToUser(@PathVariable Long id, @RequestBody Contact contact){
+		Contact addedContact = service.addContactToUser(id, contact);
+		return ResponseEntity.ok().body(addedContact);
+		
 	}
 	
 	@DeleteMapping(value = "/{id}")
